@@ -12,10 +12,10 @@ end
 -- Show a player their status when they join the server
 minetest.register_on_joinplayer(function(name)
     local player_name = name:get_player_name()
-    status = storage:get_string(prefix .. player_name)
+    local status = storage:get_string(prefix .. player_name)
 
     if (status ~= '') then
-        minetest.chat_send_player(player_name, "Your status is " .. storage:get_string(prefix .. player_name))
+        minetest.chat_send_player(player_name, "Your status is " .. status)
     end
 end)
 
