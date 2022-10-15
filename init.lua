@@ -8,7 +8,7 @@ minetest.register_chatcommand("set_status", {
     },
 
     func = function(name, status)
-        storage:set_string(name, status)
+        storage:set_string("player_status_" .. name, status)
         minetest.chat_send_all(name .. " is " .. status)
 
         return true
@@ -23,7 +23,7 @@ minetest.register_chatcommand("get_status", {
     },
 
     func = function(invoker, name)
-        minetest.chat_send_player(invoker, name .. " is " .. storage:get_string(name))
+        minetest.chat_send_player(invoker, name .. " is " .. storage:get_string("player_status_" .. name))
 
         return true
     end
