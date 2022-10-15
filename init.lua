@@ -1,4 +1,5 @@
 local storage = minetest.get_mod_storage()
+local prefix = "playerstatus_"
 
 minetest.register_chatcommand("set_status", {
     description = "Set your public in-game status",
@@ -8,7 +9,7 @@ minetest.register_chatcommand("set_status", {
     },
 
     func = function(name, status)
-        storage:set_string("player_status_" .. name, status)
+        storage:set_string(prefix .. name, status)
         minetest.chat_send_all(name .. " is " .. status)
 
         return true
@@ -23,7 +24,7 @@ minetest.register_chatcommand("get_status", {
     },
 
     func = function(invoker, name)
-        minetest.chat_send_player(invoker, name .. " is " .. storage:get_string("player_status_" .. name))
+        minetest.chat_send_player(invoker, name .. " is " .. storage:get_string(prefix .. name))
 
         return true
     end
