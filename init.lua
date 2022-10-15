@@ -27,6 +27,8 @@ minetest.register_chatcommand("set_status", {
     },
 
     func = function(name, status)
+        minetest.log("action", name .. " tries to set their status to " .. status)
+        
         if check_status(name, status) then
             minetest.chat_send_player(name, "That is already your status")
         else
@@ -53,6 +55,8 @@ minetest.register_chatcommand("afk", {
     },
 
     func = function(name)
+        minetest.log("action", name .. " tries to set their status to AFK")
+
         if check_status(name, "afk") then
             minetest.chat_send_player(name, "You are already AFK")
         else
@@ -75,6 +79,8 @@ minetest.register_chatcommand("get_status", {
     },
 
     func = function(invoker, name)
+        minetest.log("action", invoker .. " tries to get status of " .. name)
+
         -- If no name is given, tell the invoker their status
         if (name == "") then
             if check_status(invoker, "") then
